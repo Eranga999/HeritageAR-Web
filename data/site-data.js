@@ -106,7 +106,7 @@ window.SITE_DATA = {
     { id: "proposal-presentation", title: "Project Proposal Presentation", description: "Proposal defence to the panel.", date: "", marks: null, docId: "proposal-slides" },
     { id: "proposal-report", title: "Project Proposal Report", description: "Written proposal.", date: "", marks: null, docId: "proposal" },
     { id: "progress-1", title: "Progress Presentation 1", description: "Mid-term progress review.", date: "", marks: null, docId: "progress-slides" },
-    { id: "progress-2", title: "Progress Presentation 2", description: "Second progress review.", date: "", marks: null, docId: "" },
+    { id: "progress-2", title: "Progress Presentation 2", description: "Second progress review.", date: "", marks: null, docId: "progress-slides-2" },
     { id: "research-paper", title: "Research Paper", description: "IEEE-format paper.", date: "", marks: null, docId: "paper" },
     { id: "final-report", title: "Final Report (Dissertation)", description: "Final written report.", date: "", marks: null, docId: "final-report" },
     { id: "final-presentation", title: "Final Presentation and Viva", description: "Final defence.", date: "", marks: null, docId: "final-slides" },
@@ -118,15 +118,16 @@ window.SITE_DATA = {
      OneDrive share link. An empty url shows a disabled "Coming soon" button. */
   documents: {
     documents: [
-      { id: "charter", title: "Project Charter", type: "PDF", url: "", description: "Scope, objectives, timeline and team." },
-      { id: "proposal", title: "Project Proposal", type: "PDF", url: "", description: "Problem, literature, methodology and plan." },
-      { id: "checklists", title: "Checklists", type: "PDF", url: "", description: "Assessment and submission checklists." },
+      { id: "charter", title: "Project Charter", type: "PDF", url: "https://drive.google.com/file/d/1ekjL_Bs21j6Z9tkCqg0O8l2osANesX_b/view?usp=sharing", description: "Scope, objectives, timeline and team." },
+      { id: "proposal", title: "Project Proposal", type: "PDF", url: "https://drive.google.com/drive/folders/18_iNGpytZDPkovkYd9beN5XCj0yXObuV?usp=drive_link", description: "Problem, literature, methodology and plan." },
+      { id: "checklists", title: "Checklists", type: "PDF", url: "https://drive.google.com/drive/folders/1t4JVvXP-UqS8oOu6GjkfCIqd9UGlSfIZ?usp=sharing", description: "Assessment and submission checklists." },
       { id: "paper", title: "Research Paper (IEEE)", type: "PDF", url: "", description: "Conference-format paper." },
       { id: "final-report", title: "Final Report", type: "PDF", url: "", description: "Complete dissertation." }
     ],
     presentations: [
-      { id: "proposal-slides", title: "Proposal Presentation", type: "PPTX", url: "", description: "Slides from the proposal defence." },
-      { id: "progress-slides", title: "Progress Presentation", type: "PPTX", url: "", description: "Slides from the progress review." },
+      { id: "proposal-slides", title: "Proposal Presentation", type: "PPTX", url: "https://docs.google.com/presentation/d/1YUtpN3UAVndfNuLb2S5CwTbeFDpWcHD-/edit?usp=drive_link&ouid=116872682318021818786&rtpof=true&sd=true", description: "Slides from the proposal defence." },
+      { id: "progress-slides", title: "Progress Presentation 1", type: "PPTX", url: "https://drive.google.com/drive/folders/1GNJ2Un8WJhCvOibJKs-PqdMTgbaEnQcK?usp=drive_link", description: "Slides from the first progress review." },
+      { id: "progress-slides-2", title: "Progress Presentation 2", type: "PPTX", url: "https://drive.google.com/drive/folders/11iQMkz2aePe5vVgtXP76D_huIhxzbR7C?usp=drive_link", description: "Slides from the second progress review." },
       { id: "final-slides", title: "Final Presentation", type: "PPTX", url: "", description: "Slides from the final defence." }
     ]
   },
