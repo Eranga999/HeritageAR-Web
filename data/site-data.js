@@ -126,8 +126,10 @@ window.SITE_DATA = {
     ],
     presentations: [
       { id: "proposal-slides", title: "Proposal Presentation", type: "PPTX", url: "https://docs.google.com/presentation/d/1YUtpN3UAVndfNuLb2S5CwTbeFDpWcHD-/edit?usp=drive_link&ouid=116872682318021818786&rtpof=true&sd=true", description: "Slides from the proposal defence." },
-      { id: "progress-slides", title: "Progress Presentation 1", type: "PPTX", url: "https://drive.google.com/drive/folders/1GNJ2Un8WJhCvOibJKs-PqdMTgbaEnQcK?usp=drive_link", description: "Slides from the first progress review." },
-      { id: "progress-slides-2", title: "Progress Presentation 2", type: "PPTX", url: "https://drive.google.com/drive/folders/11iQMkz2aePe5vVgtXP76D_huIhxzbR7C?usp=drive_link", description: "Slides from the second progress review." },
+      { id: "progress-slides", title: "Progress Presentation 1", type: "PPTX", url: "https://docs.google.com/presentation/d/1H0Jk0dAbD__7t3VBNvbShCrh7R-kZsB3/edit?usp=drive_link&ouid=116872682318021818786&rtpof=true&sd=true", description: "Slides from the first progress review." },
+      { id: "progress-video-1", title: "Progress Presentation 1 Demo Video", type: "VIDEO", url: "https://drive.google.com/file/d/1m6nx0BRp3zqUXctRWJWxI_V-U2-PrWf2/view?usp=drive_link ", description: "Demo video from the first progress review." },
+      { id: "progress-slides-2", title: "Progress Presentation 2", type: "PPTX", url: "https://docs.google.com/presentation/d/19xsN6GxvppHD8B5aGRjug_KUKdlcuH9M/edit?usp=drive_link&ouid=116872682318021818786&rtpof=true&sd=true", description: "Slides from the second progress review." },
+      { id: "progress-video-2", title: "Progress Presentation 2 Demo Video", type: "VIDEO", url: " https://drive.google.com/file/d/1Wu3T_nb0EqUmmSxPBa6EfpamH1YC6AbD/view?usp=drive_link", description: "Demo video from the second progress review." },
       { id: "final-slides", title: "Final Presentation", type: "PPTX", url: "", description: "Slides from the final defence." }
     ]
   },
