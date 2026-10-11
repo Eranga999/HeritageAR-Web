@@ -358,10 +358,16 @@
     return String(v);
   }
   function statusOf(d, today, m) {
+    if (m && m.status) {
+      var sKey = String(m.status).toLowerCase();
+      var chipClass = sKey === 'completed' ? 'chip--completed' : sKey === 'submitted' ? 'chip--lime' : 'chip--upcoming';
+      return { key: sKey, label: m.status, chip: chipClass, days: d ? Math.round((d - today) / 864e5) : 0 };
+    }
     if (m && hasMarks(m)) return { key: 'completed', label: 'Completed', chip: 'chip--completed', days: d ? Math.round((d - today) / 864e5) : -1 };
     if (!d) return { key: 'tba', label: 'Date TBA', chip: 'chip--soon' };
     var days = Math.round((d - today) / 864e5);
     if (days < 0) return { key: 'completed', label: 'Completed', chip: 'chip--completed', days: days };
+    if (days === 0) return { key: 'submitted', label: 'Submitted', chip: 'chip--lime', days: 0 };
     if (days <= 30) return { key: 'upcoming', label: 'Upcoming', chip: 'chip--upcoming', days: days };
     return { key: 'pending', label: 'Pending', chip: 'chip--pending', days: days };
   }
@@ -392,9 +398,9 @@
     var withMarks = list.filter(function (x) { return hasMarks(x.m); });
     var numericMarks = list.filter(function (x) { return typeof x.m.marks === 'number' && isFinite(x.m.marks); });
     var totalMarks = numericMarks.reduce(function (a, x) { return a + x.m.marks; }, 0);
-    var passedMarks = numericMarks.filter(function (x) { return x.s.key === 'completed'; }).reduce(function (a, x) { return a + x.m.marks; }, 0);
-    var completed = list.filter(function (x) { return x.s.key === 'completed'; }).length;
-    var future = list.filter(function (x) { return x.d && x.s.key !== 'completed' && x.s.days >= 0; }).sort(function (a, b) { return a.d - b.d; });
+    var passedMarks = numericMarks.filter(function (x) { return x.s.key === 'completed' || x.s.key === 'submitted'; }).reduce(function (a, x) { return a + x.m.marks; }, 0);
+    var completed = list.filter(function (x) { return x.s.key === 'completed' || x.s.key === 'submitted'; }).length;
+    var future = list.filter(function (x) { return x.d && x.s.key !== 'completed' && x.s.key !== 'submitted' && x.s.days > 0; }).sort(function (a, b) { return a.d - b.d; });
     var next = future[0];
 
     if (summary) {
@@ -410,7 +416,7 @@
       var nextValue = 'TBA';
       if (next) {
         nextValue = next.s.days === 0 ? 'Today' : next.s.days === 1 ? '1 day' : next.s.days + ' days';
-        nextCaption = (next.s.days > 0 ? 'left until ' : '') + next.m.title + ', ' + displayDate(next.m, next.d);
+        nextCaption = (next.s.days > 0 ? 'left until ' : 'due today: ') + next.m.title + ', ' + displayDate(next.m, next.d);
       }
       var marksDisplay = 'TBA';
       var marksCaption = 'Allocated across all assessments';
@@ -418,12 +424,12 @@
         marksDisplay = String(totalMarks);
         marksCaption = missingMarks ? missingMarks + ' of ' + list.length + ' still to be added' : 'Allocated across all assessments';
       } else if (withMarks.length > 0) {
-        marksDisplay = withMarks.length + ' / ' + list.length;
+        marksDisplay = withMarks.length + ' of ' + list.length;
         marksCaption = withMarks.length + ' assessments evaluated (' + (list.length - withMarks.length) + ' pending)';
       }
       summary.append(
         card('Total assessments', String(list.length), 'Across the research project'),
-        card('Total marks', marksDisplay, marksCaption),
+        card(numericMarks.length > 0 ? 'Total marks' : 'Overall marks', marksDisplay, marksCaption),
         card('Completed', String(completed), completed === 1 ? 'Assessment with a past deadline' : 'Assessments with a past deadline'),
         card('Next milestone', nextValue, nextCaption, !next)
       );

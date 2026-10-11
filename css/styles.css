@@ -706,7 +706,7 @@ textarea.input { min-height: 220px; resize: vertical; line-height: 1.55; font-si
 .tl-item { position: relative; padding-left: 48px; }
 .tl-item + .tl-item { margin-top: 16px; }
 .tl-node { position: absolute; left: 6px; top: 30px; width: 20px; height: 20px; border-radius: 50%; background: var(--white); border: 3px solid var(--lime-500); box-shadow: 0 0 0 5px var(--white); }
-.tl-item.is-completed .tl-node { background: var(--lime-500); }
+.tl-item.is-completed .tl-node, .tl-item.is-submitted .tl-node { background: var(--lime-500); }
 .tl-item.is-tba .tl-node { border-color: var(--ink-300); }
 .ms-card { padding: 22px 24px; }
 .ms-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }

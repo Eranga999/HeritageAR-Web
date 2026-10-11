@@ -153,7 +153,8 @@ window.SITE_DATA = {
       description: "Draft dissertation submission for supervisor review and feedback.",
       date: "2026-10-11",
       dateDisplay: "11 Oct 2026",
-      marks: "Good",
+      marks: null,
+      status: "Submitted",
       docId: "final-report"
     },
     {
@@ -162,7 +163,8 @@ window.SITE_DATA = {
       description: "HeritageAR research project website submission.",
       date: "2026-10-11",
       dateDisplay: "11 Oct 2026",
-      marks: "Good",
+      marks: null,
+      status: "Submitted",
       docId: ""
     },
     {
