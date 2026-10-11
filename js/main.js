@@ -342,10 +342,23 @@
     return isNaN(d.getTime()) ? null : d;
   }
   function fmtDate(d) { return d ? d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() : 'Date TBA'; }
+  function displayDate(m, d) {
+    if (m && m.dateDisplay) return m.dateDisplay;
+    return fmtDate(d);
+  }
   function isoDate(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
-  function hasMarks(m) { return typeof m.marks === 'number' && isFinite(m.marks); }
-  function marksText(n) { return n + (n === 1 ? ' mark' : ' marks'); }
-  function statusOf(d, today) {
+  function hasMarks(m) {
+    if (!m) return false;
+    if (typeof m.marks === 'number' && isFinite(m.marks)) return true;
+    if (typeof m.marks === 'string' && m.marks.trim() !== '') return true;
+    return false;
+  }
+  function marksText(v) {
+    if (typeof v === 'number') return v + (v === 1 ? ' mark' : ' marks');
+    return String(v);
+  }
+  function statusOf(d, today, m) {
+    if (m && hasMarks(m)) return { key: 'completed', label: 'Completed', chip: 'chip--completed', days: d ? Math.round((d - today) / 864e5) : -1 };
     if (!d) return { key: 'tba', label: 'Date TBA', chip: 'chip--soon' };
     var days = Math.round((d - today) / 864e5);
     if (days < 0) return { key: 'completed', label: 'Completed', chip: 'chip--completed', days: days };
@@ -373,14 +386,15 @@
     today.setHours(0, 0, 0, 0);
     var list = arr(D.milestones).map(function (m) {
       var d = parseDate(m.date);
-      return { m: m, d: d, s: statusOf(d, today) };
+      return { m: m, d: d, s: statusOf(d, today, m) };
     });
 
     var withMarks = list.filter(function (x) { return hasMarks(x.m); });
-    var totalMarks = withMarks.reduce(function (a, x) { return a + x.m.marks; }, 0);
-    var passedMarks = withMarks.filter(function (x) { return x.s.key === 'completed'; }).reduce(function (a, x) { return a + x.m.marks; }, 0);
+    var numericMarks = list.filter(function (x) { return typeof x.m.marks === 'number' && isFinite(x.m.marks); });
+    var totalMarks = numericMarks.reduce(function (a, x) { return a + x.m.marks; }, 0);
+    var passedMarks = numericMarks.filter(function (x) { return x.s.key === 'completed'; }).reduce(function (a, x) { return a + x.m.marks; }, 0);
     var completed = list.filter(function (x) { return x.s.key === 'completed'; }).length;
-    var future = list.filter(function (x) { return x.d && x.s.days >= 0; }).sort(function (a, b) { return a.d - b.d; });
+    var future = list.filter(function (x) { return x.d && x.s.key !== 'completed' && x.s.days >= 0; }).sort(function (a, b) { return a.d - b.d; });
     var next = future[0];
 
     if (summary) {
@@ -396,25 +410,46 @@
       var nextValue = 'TBA';
       if (next) {
         nextValue = next.s.days === 0 ? 'Today' : next.s.days === 1 ? '1 day' : next.s.days + ' days';
-        nextCaption = (next.s.days > 0 ? 'left until ' : '') + next.m.title + ', ' + fmtDate(next.d);
+        nextCaption = (next.s.days > 0 ? 'left until ' : '') + next.m.title + ', ' + displayDate(next.m, next.d);
+      }
+      var marksDisplay = 'TBA';
+      var marksCaption = 'Allocated across all assessments';
+      if (numericMarks.length > 0) {
+        marksDisplay = String(totalMarks);
+        marksCaption = missingMarks ? missingMarks + ' of ' + list.length + ' still to be added' : 'Allocated across all assessments';
+      } else if (withMarks.length > 0) {
+        marksDisplay = withMarks.length + ' / ' + list.length;
+        marksCaption = withMarks.length + ' assessments evaluated (' + (list.length - withMarks.length) + ' pending)';
       }
       summary.append(
         card('Total assessments', String(list.length), 'Across the research project'),
-        card('Total marks', withMarks.length ? String(totalMarks) : 'TBA', missingMarks ? missingMarks + ' of ' + list.length + ' still to be added' : 'Allocated across all assessments'),
+        card('Total marks', marksDisplay, marksCaption),
         card('Completed', String(completed), completed === 1 ? 'Assessment with a past deadline' : 'Assessments with a past deadline'),
         card('Next milestone', nextValue, nextCaption, !next)
       );
     }
 
-    var pct = totalMarks ? Math.round((passedMarks / totalMarks) * 100) : 0;
+    var pct = 0;
     var bar = $('#ms-progress'), ptext = $('#ms-progress-text');
-    if (bar) {
-      bar.setAttribute('aria-valuenow', String(pct));
-      bar.setAttribute('aria-valuetext', totalMarks ? pct + '% (' + passedMarks + ' of ' + totalMarks + ' marks)' : 'Marks to be added');
-      var fill = $('.progress-fill', bar);
-      requestAnimationFrame(function () { fill.style.width = pct + '%'; });
+    if (numericMarks.length > 0 && totalMarks > 0) {
+      pct = Math.round((passedMarks / totalMarks) * 100);
+      if (bar) {
+        bar.setAttribute('aria-valuenow', String(pct));
+        bar.setAttribute('aria-valuetext', pct + '% (' + passedMarks + ' of ' + totalMarks + ' marks)');
+        var fill = $('.progress-fill', bar);
+        requestAnimationFrame(function () { fill.style.width = pct + '%'; });
+      }
+      if (ptext) ptext.textContent = passedMarks + ' of ' + totalMarks + ' marks (' + pct + '%)';
+    } else {
+      pct = list.length ? Math.round((completed / list.length) * 100) : 0;
+      if (bar) {
+        bar.setAttribute('aria-valuenow', String(pct));
+        bar.setAttribute('aria-valuetext', pct + '% (' + completed + ' of ' + list.length + ' assessments completed)');
+        var fill = $('.progress-fill', bar);
+        requestAnimationFrame(function () { fill.style.width = pct + '%'; });
+      }
+      if (ptext) ptext.textContent = completed + ' of ' + list.length + ' assessments completed (' + pct + '%)';
     }
-    if (ptext) ptext.textContent = totalMarks ? passedMarks + ' of ' + totalMarks + ' marks (' + pct + '%)' : 'Marks to be added';
 
     list.forEach(function (x) {
       var m = x.m;
@@ -422,7 +457,7 @@
         el('span', { class: 'tl-node', 'aria-hidden': 'true' }),
         el('article', { class: 'card card--hover ms-card' }, [
           el('div', { class: 'ms-meta' }, [
-            x.d ? el('time', { class: 'ms-date', datetime: isoDate(x.d), text: fmtDate(x.d) }) : null,
+            x.d ? el('time', { class: 'ms-date', datetime: isoDate(x.d), text: displayDate(m, x.d) }) : null,
             el('span', { class: 'chip chip--dot ' + x.s.chip, text: x.s.label })
           ]),
           el('h4', { text: m.title || '' }),
@@ -440,8 +475,8 @@
         return el('tr', null, [
           el('td', { class: 'num', 'data-label': '#', text: String(i + 1) }),
           el('th', { scope: 'row', text: x.m.title || '' }),
-          el('td', { 'data-label': 'Date' }, [el('span', { text: fmtDate(x.d) })]),
-          el('td', { 'data-label': 'Marks' }, [el('span', { text: hasMarks(x.m) ? String(x.m.marks) : 'TBA' })]),
+          el('td', { 'data-label': 'Date' }, [el('span', { text: displayDate(x.m, x.d) })]),
+          el('td', { 'data-label': 'Marks' }, [el('span', { class: typeof x.m.marks === 'string' ? 'chip chip--lime' : '', text: hasMarks(x.m) ? marksText(x.m.marks) : 'TBA' })]),
           el('td', { 'data-label': 'Status' }, [el('span', { class: 'chip chip--dot ' + x.s.chip, text: x.s.label })])
         ]);
       });
@@ -451,7 +486,7 @@
         el('tbody', null, rows),
         el('tfoot', null, [el('tr', null, [
           el('th', { scope: 'row', colspan: '3', text: 'Total' }),
-          el('td', { 'data-label': 'Marks' }, [el('span', { text: withMarks.length ? String(totalMarks) : 'TBA' })]),
+          el('td', { 'data-label': 'Marks' }, [el('span', { text: numericMarks.length > 0 ? String(totalMarks) : (withMarks.length ? withMarks.length + ' evaluated' : 'TBA') })]),
           el('td')
         ])])
       ]));

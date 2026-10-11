@@ -102,15 +102,123 @@ window.SITE_DATA = {
      docId: the id of a document below, or "" for no document link.
      Status (Completed / Upcoming / Pending) is worked out from today's date. */
   milestones: [
-    { id: "charter", title: "Project Charter", description: "Initial project scope and plan.", date: "", marks: null, docId: "charter" },
-    { id: "proposal-presentation", title: "Project Proposal Presentation", description: "Proposal defence to the panel.", date: "", marks: null, docId: "proposal-slides" },
-    { id: "proposal-report", title: "Project Proposal Report", description: "Written proposal.", date: "", marks: null, docId: "proposal" },
-    { id: "progress-1", title: "Progress Presentation 1", description: "Mid-term progress review.", date: "", marks: null, docId: "progress-slides" },
-    { id: "progress-2", title: "Progress Presentation 2", description: "Second progress review.", date: "", marks: null, docId: "progress-slides-2" },
-    { id: "research-paper", title: "Research Paper", description: "IEEE-format paper.", date: "", marks: null, docId: "paper" },
-    { id: "final-report", title: "Final Report (Dissertation)", description: "Final written report.", date: "", marks: null, docId: "final-report" },
-    { id: "final-presentation", title: "Final Presentation and Viva", description: "Final defence.", date: "", marks: null, docId: "final-slides" },
-    { id: "website", title: "Project Website", description: "This website.", date: "", marks: null, docId: "" }
+    {
+      id: "proposal-report",
+      title: "Proposal Submission",
+      description: "Submission of the written project proposal report.",
+      date: "2026-03-15",
+      dateDisplay: "15 Mar 2026",
+      marks: "Good",
+      docId: "proposal"
+    },
+    {
+      id: "proposal-presentation",
+      title: "Proposal Presentation",
+      description: "Proposal defence presentation to the evaluation panel.",
+      date: "2026-03-17",
+      dateDisplay: "16 – 18 Mar 2026",
+      marks: "Good",
+      docId: "proposal-slides"
+    },
+    {
+      id: "check-list-1",
+      title: "Check List submission",
+      description: "First semester progress review checklist submission.",
+      date: "2026-05-13",
+      dateDisplay: "13 May 2026",
+      marks: "Good",
+      docId: "checklists"
+    },
+    {
+      id: "progress-1",
+      title: "Progress Presentation 1",
+      description: "First progress review presentation and prototype demonstration.",
+      date: "2026-05-12",
+      dateDisplay: "11 – 13 May 2026",
+      marks: "Good",
+      docId: "progress-slides"
+    },
+    {
+      id: "progress-2",
+      title: "Progress Presentation 2",
+      description: "Second progress review presentation and system demonstration.",
+      date: "2026-09-01",
+      dateDisplay: "31 Aug – 02 Sep 2026",
+      marks: "Good",
+      docId: "progress-slides-2"
+    },
+    {
+      id: "draft-thesis",
+      title: "Draft Thesis submission",
+      description: "Draft dissertation submission for supervisor review and feedback.",
+      date: "2026-10-11",
+      dateDisplay: "11 Oct 2026",
+      marks: "Good",
+      docId: "final-report"
+    },
+    {
+      id: "website",
+      title: "Website Submission",
+      description: "HeritageAR research project website submission.",
+      date: "2026-10-11",
+      dateDisplay: "11 Oct 2026",
+      marks: "Good",
+      docId: ""
+    },
+    {
+      id: "final-check-list",
+      title: "Final Check List submission",
+      description: "Final deliverable assessment and checklist verification.",
+      date: "2026-10-14",
+      dateDisplay: "14 Oct 2026",
+      marks: null,
+      docId: "checklists"
+    },
+    {
+      id: "final-presentation",
+      title: "Final Presentation and Viva",
+      description: "Final research project defence and oral viva examination.",
+      date: "2026-10-20",
+      dateDisplay: "19 – 21 Oct 2026",
+      marks: null,
+      docId: "final-slides"
+    },
+    {
+      id: "website-eval-logbook",
+      title: "Website evaluation & Logbook submission",
+      description: "Official website evaluation and final research logbook submission.",
+      date: "2026-10-20",
+      dateDisplay: "19 – 21 Oct 2026",
+      marks: null,
+      docId: ""
+    },
+    {
+      id: "research-paper",
+      title: "Research Paper submission",
+      description: "IEEE conference format research paper submission.",
+      date: "2026-10-23",
+      dateDisplay: "23 Oct 2026",
+      marks: null,
+      docId: "paper"
+    },
+    {
+      id: "final-thesis",
+      title: "Final Thesis Submission",
+      description: "Final complete dissertation report submission.",
+      date: "2026-10-28",
+      dateDisplay: "28 Oct 2026",
+      marks: null,
+      docId: "final-report"
+    },
+    {
+      id: "research-paper-pub",
+      title: "Research Paper publication evidence submission",
+      description: "Submission of research paper publication acceptance and camera-ready evidence.",
+      date: "2026-12-01",
+      dateDisplay: "01 Dec 2026",
+      marks: null,
+      docId: "paper"
+    }
   ],
 
   /* PLACEHOLDER: url for each file. Use a relative path for files you put in
