@@ -69,30 +69,40 @@ window.SITE_DATA = {
        smartphone, cube, scan-frame, cpu, text-scan, network, database, sparkles,
        translate, layers, map-pin, bell, code, git-branch, and the feature icons above. */
     technologies: [
-      { group: "Mobile", items: [
-        { name: "Flutter / Dart", role: "Cross-platform app and UI", mono: "FL", icon: "smartphone" },
-        { name: "ARCore (planned spatial AR)", role: "Future anchored AR", mono: "AR", icon: "cube" }
-      ] },
-      { group: "Vision", items: [
-        { name: "YOLOv8n (Ultralytics)", role: "Fine-grained landmark detector", mono: "YO", icon: "scan-frame" },
-        { name: "TensorFlow Lite INT8", role: "On-device quantised inference", mono: "TF", icon: "cpu" },
-        { name: "On-device OCR (Sinhala, Tamil, English)", role: "Signboard text recognition", mono: "OC", icon: "text-scan" }
-      ] },
-      { group: "Language", items: [
-        { name: "Sentence embeddings (MiniLM-class)", role: "Passage and query encoding", mono: "SE", icon: "network" },
-        { name: "Local vector index", role: "Similarity search, no server", mono: "VI", icon: "database" },
-        { name: "Compact local LLM", role: "Grounded answers and explanations", mono: "LM", icon: "sparkles" },
-        { name: "Offline translation and dictionary", role: "Signboard translation with fallback", mono: "TR", icon: "translate" }
-      ] },
-      { group: "Maps and Location", items: [
-        { name: "GeoPackage / SQLite", role: "Bundled offline map layers", mono: "GP", icon: "layers" },
-        { name: "geolocator", role: "GPS updates for geofencing", mono: "GL", icon: "map-pin" },
-        { name: "flutter_local_notifications", role: "Local wildlife alerts", mono: "LN", icon: "bell" }
-      ] },
-      { group: "Tooling", items: [
-        { name: "Python", role: "Training and data preparation", mono: "Py", icon: "code" },
-        { name: "Git and GitHub", role: "Version control", mono: "Git", icon: "git-branch" }
-      ] }
+      {
+        group: "Mobile", items: [
+          { name: "Flutter / Dart", role: "Cross-platform app and UI", mono: "FL", icon: "smartphone" },
+          { name: "ARCore (planned spatial AR)", role: "Future anchored AR", mono: "AR", icon: "cube" }
+        ]
+      },
+      {
+        group: "Vision", items: [
+          { name: "YOLOv8n (Ultralytics)", role: "Fine-grained landmark detector", mono: "YO", icon: "scan-frame" },
+          { name: "TensorFlow Lite INT8", role: "On-device quantised inference", mono: "TF", icon: "cpu" },
+          { name: "On-device OCR (Sinhala, Tamil, English)", role: "Signboard text recognition", mono: "OC", icon: "text-scan" }
+        ]
+      },
+      {
+        group: "Language", items: [
+          { name: "Sentence embeddings (MiniLM-class)", role: "Passage and query encoding", mono: "SE", icon: "network" },
+          { name: "Local vector index", role: "Similarity search, no server", mono: "VI", icon: "database" },
+          { name: "Compact local LLM", role: "Grounded answers and explanations", mono: "LM", icon: "sparkles" },
+          { name: "Offline translation and dictionary", role: "Signboard translation with fallback", mono: "TR", icon: "translate" }
+        ]
+      },
+      {
+        group: "Maps and Location", items: [
+          { name: "GeoPackage / SQLite", role: "Bundled offline map layers", mono: "GP", icon: "layers" },
+          { name: "geolocator", role: "GPS updates for geofencing", mono: "GL", icon: "map-pin" },
+          { name: "flutter_local_notifications", role: "Local wildlife alerts", mono: "LN", icon: "bell" }
+        ]
+      },
+      {
+        group: "Tooling", items: [
+          { name: "Python", role: "Training and data preparation", mono: "Py", icon: "code" },
+          { name: "Git and GitHub", role: "Version control", mono: "Git", icon: "git-branch" }
+        ]
+      }
     ]
   },
 
@@ -325,33 +335,51 @@ window.SITE_DATA = {
       ]
     },
     nodes: [
-      { id: "core", title: "App core", short: "App core", caption: "Runs on the phone", shape: "stack", x: 0, y: 0,
+      {
+        id: "core", title: "App core", short: "App core", caption: "Runs on the phone", shape: "stack", x: 0, y: 0,
         description: "Runs every component on the phone and passes data between them. No network requests.",
-        tech: ["Flutter / Dart"], label: { dx: 0, dy: -14 } },
-      { id: "sensors", title: "Camera and GPS", short: "Camera, GPS", caption: "Live frames and location", shape: "pedestal", x: -6, y: 0,
+        tech: ["Flutter / Dart"], label: { dx: 0, dy: -14 }
+      },
+      {
+        id: "sensors", title: "Camera and GPS", short: "Camera, GPS", caption: "Live frames and location", shape: "pedestal", x: -6, y: 0,
         description: "Live camera frames and GPS fixes, read and processed only on the device.",
-        tech: [], label: { dx: 0, dy: -14 } },
-      { id: "recognition", title: "Landmark recognition", short: "Recognition", caption: "YOLOv8n INT8, on-device", shape: "dome", x: 0, y: -6,
+        tech: [], label: { dx: 0, dy: -14 }
+      },
+      {
+        id: "recognition", title: "Landmark recognition", short: "Recognition", caption: "YOLOv8n INT8, on-device", shape: "dome", x: 0, y: -6,
         description: "Names the landmark and sub-landmark in view and confirms it over several frames.",
-        tech: ["YOLOv8n (Ultralytics)", "TensorFlow Lite INT8"], label: { dx: 0, dy: -14 } },
-      { id: "assistant", title: "RAG assistant", short: "Assistant", caption: "Local LLM and knowledge base", shape: "rack", x: -6, y: -6,
+        tech: ["YOLOv8n (Ultralytics)", "TensorFlow Lite INT8"], label: { dx: 0, dy: -14 }
+      },
+      {
+        id: "assistant", title: "RAG assistant", short: "Assistant", caption: "Local LLM and knowledge base", shape: "rack", x: -6, y: -6,
         description: "Answers questions and explains landmarks using only the local knowledge base.",
-        tech: ["Sentence embeddings (MiniLM-class)", "Local vector index", "Compact local LLM"], label: { dx: 0, dy: -10 } },
-      { id: "overlay", title: "Information augmentation", short: "Info layer", caption: "Heritage information and activities", shape: "panel", x: 5, y: -6,
+        tech: ["Sentence embeddings (MiniLM-class)", "Local vector index", "Compact local LLM"], label: { dx: 0, dy: -10 }
+      },
+      {
+        id: "overlay", title: "Information augmentation", short: "Info layer", caption: "Heritage information and activities", shape: "panel", x: 5, y: -6,
         description: "Provides accessible heritage information during exploration, including sub-location discovery, local search, detailed information, images and interactive learning activities. It also supports heritage question answering, multilingual quizzes, instant feedback, scoring, quest progression and achievement badges.",
-        tech: ["Flutter / Dart", "GeoPackage / SQLite", "Sentence embeddings (MiniLM-class)", "ONNX Runtime"], label: { dx: 0, dy: -14 } },
-      { id: "navigation", title: "Navigation", short: "Navigation", caption: "Visual waypoints", shape: "signpost", x: -6, y: 5,
+        tech: ["Flutter / Dart", "GeoPackage / SQLite", "Sentence embeddings (MiniLM-class)", "ONNX Runtime"], label: { dx: 0, dy: -14 }
+      },
+      {
+        id: "navigation", title: "Navigation", short: "Navigation", caption: "Visual waypoints", shape: "signpost", x: -6, y: 5,
         description: "Guides the visitor leg by leg along a relative route and confirms waypoints visually.",
-        tech: ["Gyroscope-compass fusion", "Segment-adaptive confirmation", "Dead reckoning (capped)", "Similarity-transform survey check", "Fully offline"], label: { dx: 0, dy: -14 } },
-      { id: "translator", title: "Signboard translator", short: "Translator", caption: "Sinhala, Tamil, English", shape: "board", x: 6, y: 0,
+        tech: ["Gyroscope-compass fusion", "Segment-adaptive confirmation", "Dead reckoning (capped)", "Similarity-transform survey check", "Fully offline"], label: { dx: 0, dy: -14 }
+      },
+      {
+        id: "translator", title: "Signboard translator", short: "Translator", caption: "Sinhala, Tamil, English", shape: "board", x: 6, y: 0,
         description: "Reads signboard text with on-device OCR and translates it with a confidence score.",
-        tech: ["On-device OCR (Sinhala, Tamil, English)", "Offline translation and dictionary"], label: { dx: 0, dy: 24 } },
-      { id: "map", title: "Offline map", short: "Map", caption: "Bundled GeoPackage layers", shape: "crate", x: 0, y: 6,
+        tech: ["On-device OCR (Sinhala, Tamil, English)", "Offline translation and dictionary"], label: { dx: 0, dy: 24 }
+      },
+      {
+        id: "map", title: "Offline map", short: "Map", caption: "Bundled GeoPackage layers", shape: "crate", x: 0, y: 6,
         description: "Shows the site, the visitor's position and wildlife warning areas without a network.",
-        tech: ["GeoPackage / SQLite"], label: { dx: 0, dy: 24 } },
-      { id: "alerts", title: "Wildlife alerts", short: "Alerts", caption: "Background notifications", shape: "warning", x: 6, y: 5,
+        tech: ["GeoPackage / SQLite"], label: { dx: 0, dy: 24 }
+      },
+      {
+        id: "alerts", title: "Wildlife alerts", short: "Alerts", caption: "Background notifications", shape: "warning", x: 6, y: 5,
         description: "Sends a local notification near a wildlife warning area, even in the background.",
-        tech: ["geolocator", "flutter_local_notifications"], label: { dx: 0, dy: 18 } }
+        tech: ["geolocator", "flutter_local_notifications"], label: { dx: 0, dy: 18 }
+      }
     ],
     links: [
       { from: "sensors", to: "core" },
