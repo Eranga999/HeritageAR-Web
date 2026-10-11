@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HeritageAR | Offline AR Heritage Guide - SLIIT Research Project</title>
+  <meta name="description" content="HeritageAR is an offline-first augmented reality guide for fine-grained heritage landmark recognition, grounded explanations, navigation, wildlife alerts and signboard translation, tested at Sigiriya.">
+  <meta name="theme-color" content="#86E04A">
+  <!-- PLACEHOLDER: set your published address, then uncomment.
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/">
+  -->
+  <meta property="og:title" content="HeritageAR | Offline AR Heritage Guide - SLIIT Research Project">
+  <meta property="og:description" content="An offline-first mobile AR guide that recognises fine-grained heritage landmarks, explains them, answers questions, translates signboards and keeps visitors safe, all on the phone with no network.">
+  <meta property="og:type" content="website">
+  <!-- PLACEHOLDER: add assets/images/sigiriya-hero.jpg (1200 x 630). Social sites need the full published URL here. -->
+  <meta property="og:image" content="assets/images/sigiriya-hero.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts load without blocking first paint; text shows in the system font until they arrive -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap"></noscript>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="data/site-data.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/architecture.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ResearchProject",
+    "name": "HeritageAR",
+    "alternateName": "HeritageAR: A Fully Offline Intelligent Augmented Reality Framework for Fine-Grained Landmark Recognition, Information Augmentation, On-Device RAG Conversational Assistance, and Visual Landmark-Based Navigation",
+    "description": "An offline-first mobile AR guide that recognises fine-grained heritage landmarks, explains them, answers questions, translates signboards and keeps visitors safe, all on the phone with no network.",
+    "parentOrganization": {
+      "@type": "CollegeOrUniversity",
+      "name": "Sri Lanka Institute of Information Technology (SLIIT)",
+      "department": { "@type": "Organization", "name": "Faculty of Computing" },
+      "address": { "@type": "PostalAddress", "streetAddress": "New Kandy Road", "addressLocality": "Malabe", "addressCountry": "LK" }
+    },
+    "location": { "@type": "Place", "name": "Sigiriya, Sri Lanka" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <noscript><p class="noscript">Milestones, documents, the team, the architecture diagram and the email template need JavaScript. Everything else is readable without it.</p></noscript>
+
+  <!-- Icon sprite: stroke icons, 24px grid -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-scan-frame" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7.5" y="8" width="9" height="8" rx="1.5"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2.5 2.5 7.5 12 12.5l9.5-5L12 2.5Z"/><path d="m2.5 12 9.5 5 9.5-5"/><path d="m2.5 16.5 9.5 5 9.5-5"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></symbol>
+    <symbol id="i-translate" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1"/><path d="m22 22-5-10-5 10M14 18h6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m21.5 7-9.5 6-9.5-6"/></symbol>
+    <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M14 3H6.5A2.5 2.5 0 0 0 4 5.5v13A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-presentation" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M4 3v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3"/><path d="m8 21 4-5 4 5"/></symbol>
+    <symbol id="i-arrow-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-statusbar" viewBox="0 0 46 11"><g fill="currentColor" stroke="none"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4.5" y="5" width="3" height="6" rx=".8"/><rect x="9" y="3" width="3" height="8" rx=".8"/><rect x="13.5" y="1" width="3" height="10" rx=".8"/><circle cx="25" cy="9.3" r="1.4"/><rect x="33" y="2.5" width="9" height="6" rx="1.2"/><rect x="43.6" y="4.2" width="1.6" height="2.6" rx=".6"/></g><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M20.2 4.4a6.8 6.8 0 0 1 9.6 0M22.1 6.6a4.1 4.1 0 0 1 5.8 0" stroke-width="1.5"/><rect x="31.5" y="1" width="12" height="9" rx="2.5" stroke-width="1" opacity=".45"/></g></symbol>
+    <symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></symbol>
+    <symbol id="i-text-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M8 9h8M8 12h8M8 15h5"/></symbol>
+    <symbol id="i-network" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="12" cy="10" r="2"/><path d="M6.7 7.1 10.3 9M17.3 7.1 13.7 9M12 12v4"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M10 3.5 11.6 8a2 2 0 0 0 1.4 1.4l4.5 1.6-4.5 1.6a2 2 0 0 0-1.4 1.4L10 18.5 8.4 14a2 2 0 0 0-1.4-1.4L2.5 11 7 9.4A2 2 0 0 0 8.4 8Z"/><path d="M19 3v4M21 5h-4M18 17v3M19.5 18.5h-3"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-git-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="7" r="2.5"/><path d="M6 7.5v9M18 9.5c0 4-6 3.5-10.5 7.5"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+    <symbol id="i-landmark" viewBox="0 0 24 24"><path d="M3 21h18M5 21v-9M9.5 21v-9M14.5 21v-9M19 21v-9M2.5 9 12 3.5 21.5 9Z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5Z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2.5" width="8" height="4" rx="1"/><path d="M16 4.5h2a2 2 0 0 1 2 2V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="m2 2 20 20M8.5 16.5a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.7M19 12.9a10 10 0 0 0-2.3-1.6M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5M12 20h.01"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.1-1.3-.3-2.5-1-3.5.3-1.2.3-2.4 0-3.5 0 0-1 0-3 1.5a10.4 10.4 0 0 0-8 0C6 2 5 2 5 2c-.3 1.1-.3 2.3 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.4.5-.7 1-.9 1.7-.2.6-.2 1.2-.1 1.8v4"/><path d="M9 18c-4.5 2-5-2-7-2"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <nav class="nav" id="nav" aria-label="Main">
+      <a class="brand" href="#home" aria-label="HeritageAR home">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="11" fill="#86E04A"/><path d="M20 7.5c-5.5 0-9.5 4.1-9.5 9.3 0 6.6 9.5 15.7 9.5 15.7s9.5-9.1 9.5-15.7c0-5.2-4-9.3-9.5-9.3Z" fill="#fff"/><path d="M16 15.2v-2h2M22 13.2h2v2M24 18.6v2h-2M18 20.6h-2v-2" fill="none" stroke="#3A7A14" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Heritage<b>AR</b></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="#home" data-spy="home">Home</a></li>
+          <li><a class="nav-link" href="#domain" data-spy="domain">Domain</a></li>
+          <li><a class="nav-link" href="#milestones" data-spy="milestones">Milestones</a></li>
+          <li><a class="nav-link" href="#documents" data-spy="documents">Documents</a></li>
+          <li><a class="nav-link" href="#about" data-spy="about">About Us</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a class="btn btn-nav-ghost" href="#contact" data-spy="contact">Contact Us</a>
+          <a class="btn btn-nav-light" href="#documents">Documents</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================== HOME ============================== -->
+    <section id="home" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="container">
+          <div class="hero-text">
+            <h1 id="home-title"><span class="h1-line">Explore heritage with an AR guide</span> <span class="h1-line">that never needs the internet.</span></h1>
+            <p class="hero-sub">Recognise, explore and navigate Sigiriya, fully offline on your phone.</p>
+            <div class="hero-actions">
+              <a class="btn btn-secondary" href="#domain">Learn more</a>
+              <a class="btn btn-primary" href="#documents">Explore <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-ne"/></svg></a>
+            </div>
+          </div>
+
+          <figure class="hero-phones">
+            <div class="hp-stage">
+              <ul class="hp-chips" aria-label="Highlights">
+                <li class="float-chip">Wildlife alerts</li>
+                <li class="float-chip">100% offline</li>
+                <li class="float-chip">Sinhala, Tamil, English</li>
+              </ul>
+              <div class="hp-row">
+
+                <!-- Left phone: offline map with a wildlife warning -->
+                <div class="hp-phone hp-phone--left" role="img" aria-label="Offline map screen with a wildlife warning notification">
+                  <div class="hp-device">
+                    <span class="hp-island"></span>
+                    <div class="hp-screen slot" data-img-slot="screenMap" data-alt="" data-w="1170" data-h="2532" data-eager="1">
+                      <div class="hp-ui" aria-hidden="true">
+                        <div class="hp-status"><span>9:41</span><svg class="hp-sb" viewBox="0 0 46 11"><use href="#i-statusbar"/></svg></div>
+                        <div class="hp-appbar">
+                          <svg class="icon"><use href="#i-chevron-left"/></svg>
+                          <span class="hp-title">Sigiriya map</span>
+                          <svg class="icon"><use href="#i-search"/></svg>
+                        </div>
+                        <span class="hp-pill"><i></i>Offline map ready</span>
+                        <div class="hp-map">
+                          <img src="assets/images/screen2.jpg" alt="" width="720" height="1520" decoding="async">
+                        </div>
+                        <p class="hp-micro">Approximate reference area, not live tracking.</p>
+                        <div class="hp-cats"><span class="is-on">Landmarks</span><span>Facilities</span><span>Elephant</span><span>Honeybee</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Centre phone: landmark detection -->
+                <div class="hp-phone hp-phone--center" role="img" aria-label="Camera view detecting Sigiriya Lion Rock, with the landmark information card">
+                  <div class="hp-device">
+                    <span class="hp-island"></span>
+                    <div class="hp-screen slot" data-img-slot="screenDetect" data-alt="" data-w="1170" data-h="2532" data-eager="1">
+                      <div class="hp-ui hp-ui--camera" aria-hidden="true">
+                        <img class="hp-camera" src="assets/images/screen1.png" alt="" width="474" height="989" decoding="async">
+                        <div class="hp-sheet">
+                          <span class="hp-handle"></span>
+                          <div class="hp-sheet-head"><b>Sigiriya Rock</b><span class="hp-chip">Confirmed</span></div>
+                          <span class="hp-sub">Lion Rock fortress - 91% match</span>
+                          <span class="hp-line"></span><span class="hp-line hp-line--short"></span>
+                          <div class="hp-btns"><span class="hp-btn hp-btn--lime">Ask assistant</span><span class="hp-btn">Navigate</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right phone: screen3 capture -->
+                <div class="hp-phone hp-phone--right" role="img" aria-label="Sigiriya Rock Fortress overview screen with a retrieved summary and photos">
+                  <div class="hp-device">
+                    <span class="hp-island"></span>
+                    <div class="hp-screen slot" data-img-slot="screenTranslate" data-alt="" data-w="1170" data-h="2532" data-eager="1">
+                      <div class="hp-ui hp-ui--camera" aria-hidden="true">
+                        <img class="hp-camera hp-camera--full" src="assets/images/screen3.jpg" alt="" width="720" height="1520" decoding="async">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <figcaption class="sr-only">Three screens of the HeritageAR app: offline map, landmark detection and signboard translation</figcaption>
+          </figure>
+          <p class="hp-caption" id="hp-caption">Explore HeritageAR's offline map, landmark recognition, and heritage information features.</p>
+          <div class="note hero-note">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+            <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat cards: rendered from SITE_DATA.stats -->
+      <div class="home-block">
+        <div class="container">
+          <div class="block-head block-head--center" data-reveal>
+            <h2>HeritageAR at a glance</h2>
+            <!-- Edit these numbers in data/site-data.js -->
+            <p>Key numbers from the research prototype tested at Sigiriya.</p>
+          </div>
+          <div class="stats" id="stats"></div>
+        </div>
+      </div>
+
+      <!-- Feature cards: rendered from SITE_DATA.features -->
+      <div class="home-block">
+        <div class="container">
+          <div class="block-head block-head--center" data-reveal>
+            <h2>Four capabilities, one offline app</h2>
+          </div>
+          <div class="features" id="features"></div>
+          <div class="feature-strip" data-reveal>
+            <span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></span>
+            <div class="feature-strip-text">
+              <p><strong>Plus:</strong> Offline map with background wildlife alerts and offline AR signboard translation (Sinhala, Tamil, English).</p>
+              <div class="note">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+                <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+              </div>
+            </div>
+            <div class="slot slot--optional" data-img-slot="translatorScreen" data-alt="HeritageAR signboard translation screen" data-w="900" data-h="600"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lime band -->
+      <div class="lime-band on-lime">
+        <div class="container lime-band-inner">
+          <div data-reveal>
+            <h2>Field-tested at Sigiriya, in airplane mode.</h2>
+            <p>Recognition accuracy, overlay stability, answer grounding, navigation task completion and latency were all measured on-site with the phone offline.</p>
+            <a class="btn btn-dark" href="#domain-methodology">See the methodology <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <img class="band-media" src="assets/images/field-test.svg" alt="Isometric illustration of the Sigiriya rock with a phone in airplane mode and a crossed-out network tower" width="760" height="510" loading="lazy" data-reveal>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== DOMAIN ============================== -->
+    <section id="domain" class="section" aria-labelledby="domain-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Research domain</p>
+          <h2 id="domain-title">The research behind HeritageAR</h2>
+          <p>Offline-first mobile augmented reality for cultural heritage.</p>
+          <p class="domain-title"><strong>Full research title</strong>HeritageAR: A Fully Offline Intelligent Augmented Reality Framework for Fine-Grained Landmark Recognition, Information Augmentation, On-Device RAG Conversational Assistance, and Visual Landmark-Based Navigation</p>
+        </header>
+
+        <nav class="subnav" aria-label="Domain sections">
+          <div class="subnav-track" id="subnav-track">
+            <a class="subnav-link" href="#domain-literature" data-sub="domain-literature">Literature Review</a>
+            <a class="subnav-link" href="#domain-gap" data-sub="domain-gap">Research Gap</a>
+            <a class="subnav-link" href="#domain-problem" data-sub="domain-problem">Problem</a>
+            <a class="subnav-link" href="#domain-objectives" data-sub="domain-objectives">Objectives</a>
+            <a class="subnav-link" href="#domain-methodology" data-sub="domain-methodology">Methodology</a>
+            <a class="subnav-link" href="#domain-technologies" data-sub="domain-technologies">Technologies</a>
+          </div>
+        </nav>
+
+        <!-- Literature review -->
+        <section class="d-block" id="domain-literature" aria-labelledby="lit-title">
+          <div class="d-head" data-reveal><span class="d-num">01</span><h3 id="lit-title">Literature Review</h3></div>
+          <div class="lit">
+            <p class="lit-intro" data-reveal>Mobile augmented reality is well studied for heritage, but reported systems are usually judged on user experience rather than on the reliability of perception, and offline operation is rarely a design requirement.</p>
+            <div class="lit-grid">
+              <article class="card card--hover lit-card" data-reveal>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-landmark"/></svg></span>
+                <h4>AR for cultural heritage</h4>
+                <p>Surveys identify visualisation, reconstruction, storytelling and guidance as the dominant uses. Recent reviews of storytelling patterns and of design and evaluation practice note that systems are mostly evaluated on user experience, not perception reliability, and offline operation is seldom treated as a requirement.</p>
+                <div class="cites"><span class="cites-label">Cited works</span><ul class="chips"><li class="chip">Bekele et al.</li><li class="chip">Nikolarakis and Koutsabasis</li><li class="chip">Chatsiopoulou and Michailidis</li></ul></div>
+              </article>
+              <article class="card card--hover lit-card" data-reveal>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg></span>
+                <h4>Information presentation in mobile AR</h4>
+                <p>View management decides where a label can be drawn without overlapping others or hiding the object. Outdoor studies show text legibility depends strongly on background texture and light, both difficult on rough rock under equatorial sun. Heritage systems usually avoid this by using fiducial markers or geographic anchors with pre-authored content.</p>
+                <div class="cites"><span class="cites-label">Cited works</span><ul class="chips"><li class="chip">Bell, Feiner and Hollerer</li><li class="chip">Gabbard, Swan and Hix</li></ul></div>
+              </article>
+              <article class="card card--hover lit-card" data-reveal>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cpu"/></svg></span>
+                <h4>On-device landmark recognition</h4>
+                <p>Single-stage YOLO detectors, mobile backbones and integer-only quantisation allow real-time inference on limited hardware via TensorFlow Lite. Heritage recognition differs from generic detection: classes are fine-grained and share materials, so the main risk is confidently confusing one structure with another.</p>
+                <div class="cites"><span class="cites-label">Cited works</span><ul class="chips"><li class="chip">Redmon et al.</li><li class="chip">Jocher et al.</li><li class="chip">Howard et al.</li><li class="chip">Jacob et al.</li><li class="chip">TensorFlow Lite</li></ul></div>
+              </article>
+              <article class="card card--hover lit-card" data-reveal>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-compass"/></svg></span>
+                <h4>RAG, compact models and navigation without GNSS</h4>
+                <p>Retrieval-augmented generation with sentence encoders, FAISS or HNSW indexes and compact local language models makes grounded on-device answers possible, which matters because unsubstantiated history sounds convincing. For positioning, visual odometry and SLAM are accurate but costly in battery and heat, so a lighter route-progress approach is preferred.</p>
+                <div class="cites"><span class="cites-label">Cited works</span><ul class="chips"><li class="chip">Lewis et al.</li><li class="chip">Karpukhin et al.</li><li class="chip">Reimers and Gurevych</li><li class="chip">Abdin et al.</li><li class="chip">Scaramuzza and Fraundorfer</li><li class="chip">Mur-Artal and Tardos</li></ul></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Research gap -->
+        <section class="d-block" id="domain-gap" aria-labelledby="gap-title">
+          <div class="d-head" data-reveal><span class="d-num">02</span><h3 id="gap-title">Research Gap</h3></div>
+          <div class="gap-card" data-reveal>
+            <blockquote class="pull-quote">
+              <p>No reviewed heritage guide performs recognition, grounded explanation, conversational question answering and in-site navigation entirely on the device, without a network connection.</p>
+            </blockquote>
+            <p class="gap-support">In the reviewed studies these four capabilities are treated separately and the intelligent parts are mostly cloud-hosted. No heritage navigation method was found that is designed for situations where GNSS error is larger than the path granularity.</p>
+            <div class="table-wrap matrix-wrap">
+              <table class="rtable matrix">
+                <caption>Capability coverage in typical heritage AR systems versus HeritageAR</caption>
+                <thead>
+                  <tr><th scope="col">Capability</th><th scope="col">Typical heritage AR</th><th scope="col" class="hl">HeritageAR</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Fine-grained recognition</th><td data-label="Typical heritage AR"><span>Marker or fixed location</span></td><td class="hl" data-label="HeritageAR"><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>On-device detector</span></td></tr>
+                  <tr><th scope="row">Grounded explanation</th><td data-label="Typical heritage AR"><span>Pre-authored, cloud-hosted</span></td><td class="hl" data-label="HeritageAR"><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Local RAG</span></td></tr>
+                  <tr><th scope="row">Question answering</th><td data-label="Typical heritage AR"><span>Rare, cloud</span></td><td class="hl" data-label="HeritageAR"><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Local LLM</span></td></tr>
+                  <tr><th scope="row">Navigation where GNSS is unreliable</th><td data-label="Typical heritage AR"><span>Coordinate-based</span></td><td class="hl" data-label="HeritageAR"><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Relative route model</span></td></tr>
+                  <tr><th scope="row">Works with no signal</th><td data-label="Typical heritage AR"><span>Rarely</span></td><td class="hl" data-label="HeritageAR"><span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Yes, by design</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="note">Qualitative summary derived from the reviewed literature.</p>
+          </div>
+        </section>
+
+        <!-- Problem -->
+        <section class="d-block" id="domain-problem" aria-labelledby="problem-title">
+          <div class="d-head" data-reveal><span class="d-num">03</span><h3 id="problem-title">Problem</h3></div>
+          <div class="problem">
+            <div class="problem-statement" data-reveal>
+              <p>Heritage sites in South Asia are often located where mobile signal is weak or absent, so cloud-based guides fail exactly when visitors need them. Visitors need to know what they are looking at, its history and meaning, how to reach the next point and answers to follow-up questions that a signboard cannot give.</p>
+            </div>
+            <ol class="problem-cards">
+              <li class="card card--hover problem-card" data-reveal><span class="problem-num" aria-hidden="true">01</span><div><h4>Connectivity</h4><p>Rock corridors, terraces and tree cover weaken or remove mobile signal, so cloud inference is unreliable.</p></div></li>
+              <li class="card card--hover problem-card" data-reveal><span class="problem-num" aria-hidden="true">02</span><div><h4>Static content</h4><p>Marker- or location-bound content is fixed at build time and cannot adapt to visitor questions.</p></div></li>
+              <li class="card card--hover problem-card" data-reveal><span class="problem-num" aria-hidden="true">03</span><div><h4>Positioning error</h4><p>Consumer GNSS is off by several metres, and some visitor path legs at the site are about one metre long, so coordinate-based navigation cannot tell which segment the user is on.</p></div></li>
+            </ol>
+          </div>
+          <div class="strip" data-reveal>
+            <span class="icon-badge icon-badge--sm"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></span>
+            <div>
+              <p>Also addressed: language barriers on signboards (Sinhala, Tamil, English) and visitor safety near elephant and Asian giant honeybee warning areas.</p>
+              <div class="note">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+                <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Objectives -->
+        <section class="d-block" id="domain-objectives" aria-labelledby="obj-title">
+          <div class="d-head" data-reveal><span class="d-num">04</span><h3 id="obj-title">Objectives</h3></div>
+          <div class="main-obj" data-reveal>
+            <p class="eyebrow">Main objective</p>
+            <p class="main-obj-text">Design, build and evaluate a fully offline intelligent AR heritage guide that combines fine-grained landmark recognition, grounded explanation, conversational assistance and GNSS-independent navigation, tested at Sigiriya.</p>
+          </div>
+          <ol class="obj-grid" aria-label="Specific objectives">
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-wifi-off"/></svg></span><span class="obj-n">SO 01</span></div><p>Build an offline architecture with four local components that makes no network request at runtime.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-scan-frame"/></svg></span><span class="obj-n">SO 02</span></div><p>Train and quantise a detector for specific heritage sub-landmarks and add geometric and sub-landmark filters that reject confident false detections without retraining.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-layers"/></svg></span><span class="obj-n">SO 03</span></div><p>Create a detection-driven AR overlay that anchors content to the recognised structure and shows uncertainty instead of hiding it.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg></span><span class="obj-n">SO 04</span></div><p>Implement an on-device RAG assistant supporting both system-initiated explanations and visitor questions from one index and one local model.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-route"/></svg></span><span class="obj-n">SO 05</span></div><p>Develop a relative route navigation method using segment lengths, turn instructions and visually confirmed waypoints, with an admin survey mode for authoring routes in the field.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-map"/></svg></span><span class="obj-n">SO 06</span></div><p>Provide an offline map with wildlife warning areas and a background alert service that notifies visitors near elephant and Asian giant honeybee zones, with local-only location processing.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-translate"/></svg></span><span class="obj-n">SO 07</span></div><p>Provide offline AR signboard translation with reliable Sinhala, Tamil and English OCR, heritage phrase matching and confidence-scored translation.</p></li>
+            <li class="card card--hover obj-card" data-reveal><div class="obj-card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clipboard"/></svg></span><span class="obj-n">SO 08</span></div><p>Evaluate the system at Sigiriya in airplane mode for recognition, overlay stability, answer grounding, navigation task completion and latency.</p></li>
+          </ol>
+          <div class="note">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+            <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+          </div>
+        </section>
+
+        <!-- Methodology -->
+        <section class="d-block" id="domain-methodology" aria-labelledby="method-title">
+          <div class="d-head" data-reveal><span class="d-num">05</span><h3 id="method-title">Methodology</h3></div>
+
+          <h4 class="sub-title">Design constraints</h4>
+          <ul class="constraints">
+            <li class="card constraint" data-reveal><span class="cid">C1</span><p>No component may make a network request at runtime, including telemetry, model download or content updates.</p></li>
+            <li class="card constraint" data-reveal><span class="cid">C2</span><p>The whole deployable (app, detector, embedding model, vector index, knowledge base, language model) must fit a storage budget a visitor would reasonably allow.</p></li>
+            <li class="card constraint" data-reveal><span class="cid">C3</span><p>Responsiveness must stay good on mid-range phones, not only flagships.</p></li>
+          </ul>
+
+          <h4 class="sub-title">Pipeline</h4>
+          <ol class="pipeline">
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">1</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Data and training</h5>
+              <p>Purpose-built Sigiriya landmark and sub-landmark dataset, photographed from varied viewpoints, distances, times of day and weather; YOLOv8n trained with Ultralytics.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">2</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Quantise and deploy</h5>
+              <p>Export to TensorFlow Lite with full INT8 post-training quantisation; ship FP32 and INT8 and pick at start-up by delegate availability; inference runs in a background isolate.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">3</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Filter and confirm</h5>
+              <p>Geometric plausibility and site-lock filters, then confidence threshold held over consecutive frames before a label is released.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">4</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Overlay</h5>
+              <p>Confirmed, tentative and null states; content anchored to the confirmed structure; presentation decoupled from generation.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">5</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Retrieve and generate</h5>
+              <p>Passage embeddings, cosine similarity, similarity floor, top-k context, local language model; one pipeline for system-initiated and visitor-initiated queries.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">6</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Navigate</h5>
+              <p>Relative route of legs with displacement estimation and visual waypoint confirmation; routes authored in an admin survey mode.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">7</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Map, alerts and translation</h5>
+              <p>Bundled GeoPackage offline map; geofence monitor with approach, inside and leaving states plus exit hysteresis; background local notifications; on-device OCR, heritage phrase matching, offline translation and dictionary fallback with confidence scoring.</p>
+            </li>
+            <li class="card step" data-reveal>
+              <div class="step-head"><span class="step-num" aria-hidden="true">8</span><svg class="step-link" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="100%" y2="6"/><svg x="100%" y="0" overflow="visible"><path d="M-7 1-1 6-7 11"/></svg></svg></div>
+              <h5>Field evaluation</h5>
+              <p>All tests at Sigiriya with the phone in airplane mode.</p>
+            </li>
+          </ol>
+          <div class="note">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+            <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+          </div>
+
+          <div class="eval">
+            <h4 class="sub-title">Evaluation protocol</h4>
+            <div class="acc">
+              <div class="acc-item" data-reveal>
+                <h5><button class="acc-btn" type="button" id="acc-1-btn" aria-expanded="true" aria-controls="acc-1">Recognition<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button></h5>
+                <div class="acc-panel" id="acc-1" role="region" aria-labelledby="acc-1-btn"><p>Per-class precision, recall, F1, mAP@0.5, confusion matrix, FP32 vs INT8 accuracy, latency and size.</p></div>
+              </div>
+              <div class="acc-item" data-reveal>
+                <h5><button class="acc-btn" type="button" id="acc-2-btn" aria-expanded="true" aria-controls="acc-2">Overlay<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button></h5>
+                <div class="acc-panel" id="acc-2" role="region" aria-labelledby="acc-2-btn"><p>Anchoring stability and legibility during passes in front of structures, measured during the same field visits.</p></div>
+              </div>
+              <div class="acc-item" data-reveal>
+                <h5><button class="acc-btn" type="button" id="acc-3-btn" aria-expanded="true" aria-controls="acc-3">Retrieval and generation<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button></h5>
+                <div class="acc-panel" id="acc-3" role="region" aria-labelledby="acc-3-btn"><p>A set of factual, explanatory and out-of-scope questions scored for groundedness and refusal behaviour.</p></div>
+              </div>
+              <div class="acc-item" data-reveal>
+                <h5><button class="acc-btn" type="button" id="acc-4-btn" aria-expanded="true" aria-controls="acc-4">Navigation<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button></h5>
+                <div class="acc-panel" id="acc-4" role="region" aria-labelledby="acc-4-btn"><p>Task completion, time and errors for participants reaching a target landmark using only the app.</p></div>
+              </div>
+              <div class="acc-item" data-reveal>
+                <h5><button class="acc-btn" type="button" id="acc-5-btn" aria-expanded="true" aria-controls="acc-5">Map, alerts and translation<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button></h5>
+                <div class="acc-panel" id="acc-5" role="region" aria-labelledby="acc-5-btn">
+                  <p>Map load and render time, geofence detection delay, false and missed warning rates, duplicate notification rate, battery use; OCR character and word accuracy per script, translation accuracy, capture-to-result latency, accuracy under low light and blur.</p>
+                  <p class="note">Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technologies: tiles rendered from SITE_DATA.domain.technologies -->
+        <section class="d-block" id="domain-technologies" aria-labelledby="tech-title">
+          <div class="d-head" data-reveal><span class="d-num">06</span><h3 id="tech-title">Technologies</h3></div>
+          <div class="filters" id="tech-filters" role="group" aria-label="Filter technologies by category"></div>
+          <div id="tech-groups"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============================== MILESTONES ============================== -->
+    <section id="milestones" class="section section--tint" aria-labelledby="milestones-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Project timeline</p>
+          <h2 id="milestones-title">Assessments, dates and marks</h2>
+          <p>Every assessment of the research project with its deadline and allocated marks.</p>
+        </header>
+
+        <div class="ms-summary" id="ms-summary"></div>
+
+        <div class="progress" data-reveal>
+          <div class="progress-top"><strong id="ms-progress-title">Marks already passed</strong><span id="ms-progress-text">Marks to be added</span></div>
+          <div class="progress-track" id="ms-progress" role="progressbar" aria-labelledby="ms-progress-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill"></div></div>
+        </div>
+
+        <div class="ms-toolbar">
+          <h3>All assessments</h3>
+          <div class="view-toggle" role="group" aria-label="Choose how to view assessments">
+            <button type="button" data-view="timeline" aria-pressed="true" aria-controls="ms-timeline">Timeline</button>
+            <button type="button" data-view="table" aria-pressed="false" aria-controls="ms-table-wrap">Table</button>
+          </div>
+        </div>
+        <ol class="timeline" id="ms-timeline"></ol>
+        <div class="ms-table-wrap" id="ms-table-wrap" hidden></div>
+      </div>
+    </section>
+
+    <!-- ============================== DOCUMENTS ============================== -->
+    <section id="documents" class="section" aria-labelledby="documents-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Resources</p>
+          <h2 id="documents-title">Documents and presentations</h2>
+          <p>Open or download every submitted deliverable.</p>
+        </header>
+
+        <div class="doc-toolbar" role="search">
+          <label class="sr-only" for="doc-search">Filter documents</label>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+          <input class="input doc-search" id="doc-search" type="search" placeholder="Filter documents" autocomplete="off">
+        </div>
+        <div id="doc-groups"></div>
+        <div class="doc-empty" id="doc-empty" hidden><p><strong>No matches.</strong> Try a different word or clear the filter.</p></div>
+        <p class="sr-only" id="doc-status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ============================== ABOUT US ============================== -->
+    <section id="about" class="section section--tint" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">The team</p>
+          <h2 id="about-title">People behind HeritageAR</h2>
+          <p>Four students from the Faculty of Computing, guided by our supervisors.</p>
+          <div class="head-actions">
+            <a class="btn btn-secondary btn-sm" href="#how-we-work">See how we work together <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </header>
+        <div class="team-row">
+          <h3 class="row-label">Supervision</h3>
+          <div class="sup-grid" id="supervisors"></div>
+        </div>
+        <div class="team-row">
+          <h3 class="row-label">Research team</h3>
+          <div class="member-grid" id="members"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== HOW WE WORK TOGETHER (part of About Us) ============================== -->
+    <section id="how-we-work" class="section hw" aria-labelledby="hw-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Collaboration</p>
+          <h2 id="hw-title">How we work together</h2>
+          <p>Four people, one offline app. Pick a team member to see which part of the architecture they own and how it connects to the rest.</p>
+        </header>
+        <!-- Diagram, tabs and panel are built by js/architecture.js from SITE_DATA.collaboration -->
+        <div class="hw-card" id="hw-card" data-reveal>
+          <div class="hw-diagram" id="hw-diagram"></div>
+          <div class="hw-side">
+            <div class="hw-tabs" id="hw-tabs" role="tablist" aria-label="Choose a team member"></div>
+            <div class="hw-panel" id="hw-panel" role="tabpanel" tabindex="0" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="note hw-note">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+          <p>Wildlife warning areas are based on information collected from local communities and wildlife authorities. Although these reports help identify potential wildlife activity areas, the information may occasionally be inaccurate or outdated.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Get in touch</p>
+          <h2 id="contact-title">Contact the team</h2>
+          <p id="contact-intro">Questions, collaboration or feedback? Send us a message below and attach files if you need to.</p>
+        </header>
+
+        <div class="contact-grid">
+          <div class="contact-card on-lime" data-reveal>
+            <svg class="contact-rings" viewBox="0 0 320 320" aria-hidden="true" focusable="false"><circle cx="160" cy="160" r="40"/><circle cx="160" cy="160" r="70"/><circle cx="160" cy="160" r="100"/><circle cx="160" cy="160" r="130"/><circle cx="160" cy="160" r="158"/></svg>
+            <h3>Contact details</h3>
+            <ul class="c-list">
+              <li class="c-item">
+                <span class="c-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span>
+                <div><span class="c-label">Team email (all members)</span><span class="c-value"><a id="c-team-mail" href="#contact-form">Email the whole team</a></span></div>
+              </li>
+              <li class="c-item">
+                <span class="c-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-map-pin"/></svg></span>
+                <div><span class="c-label">Address</span><span class="c-value" id="c-address">Faculty of Computing, Sri Lanka Institute of Information Technology, New Kandy Road, Malabe, Sri Lanka</span></div>
+              </li>
+              <li class="c-item">
+                <span class="c-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-user"/></svg></span>
+                <div><span class="c-label">Supervisor</span><span class="c-value" id="c-supervisor"><span class="tba">To be added</span></span></div>
+              </li>
+              <li class="c-item">
+                <span class="c-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span>
+                <div><span class="c-label">Response time</span><span class="c-value" id="c-response"><span class="tba">To be added</span></span></div>
+              </li>
+            </ul>
+            <p class="c-label c-label--members">Team members</p>
+            <ul class="c-members" id="c-members"></ul>
+          </div>
+
+          <div class="form-card" data-reveal>
+            <h3 id="form-title">Send us a message</h3>
+            <p>Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
+            <form id="contact-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                  <input class="input" id="f-name" name="yourName" type="text" autocomplete="name" required aria-describedby="err-yourName">
+                  <p class="field-error" id="err-yourName" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="f-email">Your email <span class="req" aria-hidden="true">*</span></label>
+                  <input class="input" id="f-email" name="yourEmail" type="email" autocomplete="email" required aria-describedby="err-yourEmail">
+                  <p class="field-error" id="err-yourEmail" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="f-org">Organisation (optional)</label>
+                  <input class="input" id="f-org" name="organisation" type="text" autocomplete="organization">
+                </div>
+                <div class="field">
+                  <label for="f-topic">Topic</label>
+                  <select class="input" id="f-topic" name="topic">
+                    <option>General enquiry</option>
+                    <option>Research collaboration</option>
+                    <option>Request a demo</option>
+                    <option>Feedback on the project</option>
+                    <option>Media or press</option>
+                  </select>
+                </div>
+                <div class="field field--full">
+                  <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+                  <textarea class="input" id="f-message" name="message" rows="7" required aria-describedby="err-message" placeholder="Write your message here"></textarea>
+                  <p class="field-error" id="err-message" aria-live="polite"></p>
+                </div>
+                <div class="field field--full">
+                  <span class="field-label" id="files-label">Attachments (optional)</span>
+                  <div class="dropzone" id="dropzone">
+                    <input class="sr-only" id="f-files" name="files" type="file" multiple aria-labelledby="files-label" aria-describedby="files-hint err-files">
+                    <label for="f-files" class="btn btn-ghost btn-sm"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-file-text"/></svg>Choose files</label>
+                    <p class="dropzone-text" id="files-hint">or drop them here. Up to 5 files, 10 MB in total. PDF, Word, PowerPoint, Excel, images, text or ZIP.</p>
+                  </div>
+                  <ul class="file-list" id="file-list" aria-label="Attached files"></ul>
+                  <p class="field-error" id="err-files" aria-live="polite"></p>
+                </div>
+                <div class="hp-field" aria-hidden="true">
+                  <label for="f-honey">Leave this empty</label>
+                  <input id="f-honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+                </div>
+              </div>
+              <p class="form-status" id="form-status" role="status" hidden></p>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btn-send"><span id="btn-send-label">Submit</span> <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-ne"/></svg></button>
+                <button type="button" class="btn btn-ghost" id="btn-reset">Reset</button>
+              </div>
+              <div class="note">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>
+                <p>Your message and attachments are emailed straight to the HeritageAR team. We reply to the email address you give.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="#home">
+            <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="11" fill="#86E04A"/><path d="M20 7.5c-5.5 0-9.5 4.1-9.5 9.3 0 6.6 9.5 15.7 9.5 15.7s9.5-9.1 9.5-15.7c0-5.2-4-9.3-9.5-9.3Z" fill="#fff"/><path d="M16 15.2v-2h2M22 13.2h2v2M24 18.6v2h-2M18 20.6h-2v-2" fill="none" stroke="#3A7A14" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Heritage<b>AR</b></span>
+          </a>
+          <p class="footer-blurb">Offline AR heritage guide.<br>SLIIT final-year research project.</p>
+          <div class="socials" id="footer-social"></div>
+        </div>
+        <nav aria-label="Explore">
+          <h2 class="footer-title">Explore</h2>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#domain">Domain</a></li>
+            <li><a href="#milestones">Milestones</a></li>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Resources">
+          <h2 class="footer-title">Resources</h2>
+          <ul class="footer-links">
+            <li><a href="#doc-charter">Charter</a></li>
+            <li><a href="#doc-proposal">Proposal</a></li>
+            <li><a href="#doc-paper">Research paper</a></li>
+            <li><a href="#doc-final-report">Final report</a></li>
+            <li><a href="#doc-group-presentations">Presentations</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-title">Contact</h2>
+          <ul class="footer-links">
+            <li><a id="footer-team-mail" href="#contact">Team email</a></li>
+            <li><a href="#contact">Faculty of Computing, SLIIT</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 HeritageAR Research Team, SLIIT</p>
+        <a class="btn btn-secondary btn-sm" href="#home" data-top>Back to top <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg></a>
+      </div>
+    </div>
+    <div class="watermark" aria-hidden="true"></div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" data-top aria-label="Back to top">
+    <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
+  </button>
+  <div class="toast-region"><p class="toast" id="toast" role="status" aria-live="polite"></p></div>
+</body>
+</html>
