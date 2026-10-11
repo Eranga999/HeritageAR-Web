@@ -755,7 +755,7 @@
         return;
       }
       if (location.protocol === 'file:') {
-        showStatus('Messages can only be sent from the published website, not from a file opened on this computer.', false);
+        showStatus('Please open this website through a web server, such as the published site or a local Live Server URL. FormSubmit does not accept pages opened directly from a file.', false);
         return;
       }
       var data = new FormData();

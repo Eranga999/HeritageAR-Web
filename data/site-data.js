@@ -167,20 +167,20 @@ window.SITE_DATA = {
       },
       {
         name: "N.S.B. Jayah", regNo: "IT22194244", email: "it22194244@my.sliit.lk",
-        component: "",                  // PLACEHOLDER research component
-        photo: "",                      // PLACEHOLDER "assets/team/member-1.jpg"
+        component: "On-device RAG assistant",
+        photo: "assets/team/member-1.jpg",
         linkedin: "", github: ""
       },
       {
         name: "P.A.Y.S. Perera", regNo: "IT22198686", email: "it22198686@my.sliit.lk",
-        component: "",                  // PLACEHOLDER research component
-        photo: "",                      // PLACEHOLDER "assets/team/member-2.jpg"
+        component: "Information Augmentation Layer",
+        photo: "assets/team/member-2.png",
         linkedin: "", github: ""
       },
       {
         name: "P.G.G. Nuthara", regNo: "IT22516602", email: "it22516602@my.sliit.lk",
-        component: "",                  // PLACEHOLDER research component
-        photo: "",                      // PLACEHOLDER "assets/team/member-4.jpg"
+        component: "Visual landmark-based navigation",
+        photo: "assets/team/member-4.jpg",
         linkedin: "", github: ""
       }
     ]
@@ -227,12 +227,12 @@ window.SITE_DATA = {
       { id: "assistant", title: "RAG assistant", short: "Assistant", caption: "Local LLM and knowledge base", shape: "rack", x: -6, y: -6,
         description: "Answers questions and explains landmarks using only the local knowledge base.",
         tech: ["Sentence embeddings (MiniLM-class)", "Local vector index", "Compact local LLM"], label: { dx: 0, dy: -10 } },
-      { id: "overlay", title: "AR overlay", short: "Overlay", caption: "Anchored labels", shape: "panel", x: 5, y: -6,
-        description: "Shows the confirmed landmark's name and content on screen, with its confidence.",
-        tech: ["Flutter / Dart"], label: { dx: 0, dy: -14 } },
+      { id: "overlay", title: "Information augmentation", short: "Info layer", caption: "Heritage information and activities", shape: "panel", x: 5, y: -6,
+        description: "Provides accessible heritage information during exploration, including sub-location discovery, local search, detailed information, images and interactive learning activities. It also supports heritage question answering, multilingual quizzes, instant feedback, scoring, quest progression and achievement badges.",
+        tech: ["Flutter / Dart", "GeoPackage / SQLite", "Sentence embeddings (MiniLM-class)", "ONNX Runtime"], label: { dx: 0, dy: -14 } },
       { id: "navigation", title: "Navigation", short: "Navigation", caption: "Visual waypoints", shape: "signpost", x: -6, y: 5,
         description: "Guides the visitor leg by leg along a relative route and confirms waypoints visually.",
-        tech: [], label: { dx: 0, dy: -14 } },
+        tech: ["Gyroscope-compass fusion", "Segment-adaptive confirmation", "Dead reckoning (capped)", "Similarity-transform survey check", "Fully offline"], label: { dx: 0, dy: -14 } },
       { id: "translator", title: "Signboard translator", short: "Translator", caption: "Sinhala, Tamil, English", shape: "board", x: 6, y: 0,
         description: "Reads signboard text with on-device OCR and translates it with a confidence score.",
         tech: ["On-device OCR (Sinhala, Tamil, English)", "Offline translation and dictionary"], label: { dx: 0, dy: 24 } },
@@ -269,13 +269,13 @@ window.SITE_DATA = {
       },
       {
         nodeIds: ["overlay"],
-        hint: "AR information overlay",
-        description: "I build the AR overlay that shows information on top of the camera view. Content is anchored to the structure the recognition component has confirmed, and the overlay is honest about how sure the app is, with confirmed, tentative and no-detection states instead of hiding uncertainty."
+        hint: "Information augmentation layer",
+        description: "I build the Information Augmentation Layer to provide accessible heritage information during exploration. It supports sub-location discovery, local search, detailed information, images and interactive learning activities, along with heritage question answering, multilingual quizzes, instant feedback, scoring, quest progression and achievement badges."
       },
       {
         nodeIds: ["navigation"],
         hint: "Visual landmark-based navigation",
-        description: "I build navigation that still works where GPS is too inaccurate for the site's short paths. A route is stored as a series of legs with lengths and turn instructions, progress is estimated from the visitor's movement, and waypoints are confirmed visually. Routes are recorded on site with an admin survey mode."
+        description: "I build the navigation that guides visitors along the heritage route without trusting GPS alone. The route is stored as measured segment distances and turn instructions, so progress comes from distance walked rather than matching coordinates. Each turn is verified with the gyroscope and compass, and each landmark arrival is confirmed by the on-device detector. If GPS drops out, a capped estimate keeps the direction arrows going, but it can never confirm a waypoint. Everything runs on the phone, with no internet needed."
       }
     ]
   },
