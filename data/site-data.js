@@ -420,7 +420,7 @@ window.SITE_DATA = {
 
   contact: {
     address: "Faculty of Computing, Sri Lanka Institute of Information Technology, New Kandy Road, Malabe, Sri Lanka",
-    responseTime: "",                   // PLACEHOLDER e.g. "Within 2 working days"
+    responseTime: "within 2 working days",                   // PLACEHOLDER e.g. "Within 2 working days"
     /* FormSubmit (formsubmit.co) address the contact form posts to. Messages
        and attachments are emailed to the address at the end. After the first
        message is confirmed, FormSubmit sends a random alias: replace the email
