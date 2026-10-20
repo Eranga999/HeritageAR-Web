@@ -144,7 +144,7 @@ window.SITE_DATA = {
       title: "Progress Presentation 1",
       description: "First progress review presentation and prototype demonstration.",
       date: "2026-05-12",
-      dateDisplay: "11 – 13 May 2026",
+      dateDisplay: "12 May 2026",
       marks: "Good",
       docId: "progress-slides"
     },
@@ -153,7 +153,7 @@ window.SITE_DATA = {
       title: "Progress Presentation 2",
       description: "Second progress review presentation and system demonstration.",
       date: "2026-09-01",
-      dateDisplay: "31 Aug – 02 Sep 2026",
+      dateDisplay: "01 Sep 2026",
       marks: "Good",
       docId: "progress-slides-2"
     },
@@ -191,7 +191,7 @@ window.SITE_DATA = {
       title: "Final Presentation and Viva",
       description: "Final research project defence and oral viva examination.",
       date: "2026-10-20",
-      dateDisplay: "19 – 21 Oct 2026",
+      dateDisplay: "21 Oct 2026",
       marks: null,
       docId: "final-slides"
     },
@@ -200,7 +200,7 @@ window.SITE_DATA = {
       title: "Website evaluation & Logbook submission",
       description: "Official website evaluation and final research logbook submission.",
       date: "2026-10-20",
-      dateDisplay: "19 – 21 Oct 2026",
+      dateDisplay: "21 Oct 2026",
       marks: null,
       docId: ""
     },
@@ -242,7 +242,7 @@ window.SITE_DATA = {
       { id: "proposal", title: "Project Proposal", type: "PDF", url: "https://drive.google.com/drive/folders/18_iNGpytZDPkovkYd9beN5XCj0yXObuV?usp=drive_link", description: "Problem, literature, methodology and plan." },
       { id: "checklists", title: "Checklists", type: "PDF", url: "https://drive.google.com/drive/folders/1t4JVvXP-UqS8oOu6GjkfCIqd9UGlSfIZ?usp=sharing", description: "Assessment and submission checklists." },
       { id: "paper", title: "Research Paper (IEEE)", type: "PDF", url: "", description: "Conference-format paper." },
-      { id: "final-report", title: "Final Report", type: "PDF", url: "", description: "Complete dissertation." }
+      { id: "final-report", title: "Final Report", type: "PDF", url: "https://drive.google.com/drive/folders/1MG5GGkQGrF8Y4rJOM0yoIEIiIyhJIjfE?usp=sharing", description: "Complete dissertation." }
     ],
     presentations: [
       { id: "proposal-slides", title: "Proposal Presentation", type: "PPTX", url: "https://docs.google.com/presentation/d/1YUtpN3UAVndfNuLb2S5CwTbeFDpWcHD-/edit?usp=drive_link&ouid=116872682318021818786&rtpof=true&sd=true", description: "Slides from the proposal defence." },
