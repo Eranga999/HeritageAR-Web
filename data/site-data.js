@@ -437,7 +437,7 @@ window.SITE_DATA = {
 
   /* Optional project-wide links shown in the footer when set. */
   social: {
-    github: "",
-    linkedin: ""
+    github: "https://github.com/Eranga999?tab=repositories",
+    linkedin: "https://www.linkedin.com/in/eranga-harsha-16b941307/"
   }
 };
