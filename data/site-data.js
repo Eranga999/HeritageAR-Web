@@ -53,7 +53,7 @@ window.SITE_DATA = {
   /* Icons available: scan-frame, layers, chat, route, map, translate, cpu, compass, eye, landmark */
   features: [
     { icon: "scan-frame", title: "Fine-grained recognition", text: "A quantised YOLOv8n detector tells which landmark and which sub-landmark is in view." },
-    { icon: "layers", title: "AR information overlay", text: "Content is anchored to the confirmed structure and shows its confidence honestly." },
+    { icon: "layers", title: " Information Augmentation  layer", text: "Content is anchored to the confirmed structure and shows its confidence honestly." },
     { icon: "chat", title: "On-device RAG assistant", text: "A local language model answers questions grounded in a curated heritage knowledge base." },
     { icon: "route", title: "Landmark-based navigation", text: "Relative routes confirmed visually, so it works even when GNSS error exceeds the path length." }
   ],
