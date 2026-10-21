@@ -289,13 +289,14 @@ window.SITE_DATA = {
         name: "N.S.B. Jayah", regNo: "IT22194244", email: "it22194244@my.sliit.lk",
         component: "On-device RAG assistant",
         photo: "assets/team/member-1.jpg",
-        linkedin: "https://www.linkedin.com/in/naveesha-jayah-671a14338/", github: ""
+        linkedin: "https://www.linkedin.com/in/naveesha-jayah-671a14338/", github: "https://github.com/Naveesha-Jayah"
+
       },
       {
         name: "P.A.Y.S. Perera", regNo: "IT22198686", email: "it22198686@my.sliit.lk",
-        component: "Information Augmentation Layer",
+        component: "Information Augmentation Layer. Additional contributions: quiz component — Gamified Heritage Learning Module.",
         photo: "assets/team/member-2.png",
-        linkedin: "https://www.linkedin.com/in/yashira-perera-99aaaa178/", github: ""
+        linkedin: "https://www.linkedin.com/in/yashira-perera-99aaaa178/", github: "https://github.com/YashiraPerera"
       },
       {
         name: "P.G.G. Nuthara", regNo: "IT22516602", email: "it22516602@my.sliit.lk",
