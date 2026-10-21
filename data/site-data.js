@@ -190,7 +190,7 @@ window.SITE_DATA = {
       id: "final-presentation",
       title: "Final Presentation and Viva",
       description: "Final research project defence and oral viva examination.",
-      date: "2026-10-20",
+      date: "2026-10-21",
       dateDisplay: "21 Oct 2026",
       marks: null,
       docId: "final-slides"
@@ -199,7 +199,7 @@ window.SITE_DATA = {
       id: "website-eval-logbook",
       title: "Website evaluation & Logbook submission",
       description: "Official website evaluation and final research logbook submission.",
-      date: "2026-10-20",
+      date: "2026-10-21",
       dateDisplay: "21 Oct 2026",
       marks: null,
       docId: ""
@@ -283,19 +283,19 @@ window.SITE_DATA = {
         name: "Kumara G.E.I.E.H", regNo: "IT22253644", email: "it22253644@my.sliit.lk",
         component: "Landmark and sub-landmark recognition. Additional contributions: offline map with wildlife alerts and offline AR signboard translation.",
         photo: "assets/team/member-3.png",
-        linkedin: "", github: ""
+        linkedin: "https://www.linkedin.com/in/eranga-harsha-16b941307/", github: "https://github.com/Eranga999?tab=repositories"
       },
       {
         name: "N.S.B. Jayah", regNo: "IT22194244", email: "it22194244@my.sliit.lk",
         component: "On-device RAG assistant",
         photo: "assets/team/member-1.jpg",
-        linkedin: "", github: ""
+        linkedin: "https://www.linkedin.com/in/naveesha-jayah-671a14338/", github: ""
       },
       {
         name: "P.A.Y.S. Perera", regNo: "IT22198686", email: "it22198686@my.sliit.lk",
         component: "Information Augmentation Layer",
         photo: "assets/team/member-2.png",
-        linkedin: "", github: ""
+        linkedin: "https://www.linkedin.com/in/yashira-perera-99aaaa178/", github: ""
       },
       {
         name: "P.G.G. Nuthara", regNo: "IT22516602", email: "it22516602@my.sliit.lk",
